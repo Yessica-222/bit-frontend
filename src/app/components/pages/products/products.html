@@ -1,0 +1,27 @@
+<div class="container">
+  <h2 class="mb-4">Productos disponibles</h2>
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let product of products">
+      <div class="card h-100 shadow-sm">
+        <img [src]="product.image || 'assets/placeholder.png'" 
+             class="card-img-top product-img" 
+             alt="Imagen del producto">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name || product.nombre_servicio }}</h5>
+          <p class="card-text">{{ product.description || 'Sin descripción' }}</p>
+          <p class="fw-bold text-success">$ {{ product.price || product.precio }}</p>
+          <button class="btn btn-primary w-100" (click)="addToCart(product)">
+            🛒 Agregar al carrito
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 🔥 Modal de confirmación -->
+<div class="modal-backdrop" *ngIf="showModal">
+  <div class="modal-box">
+    <p>{{ modalMessage }}</p>
+  </div>
+</div>

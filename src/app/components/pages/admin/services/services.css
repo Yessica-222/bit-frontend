@@ -1,0 +1,379 @@
+/* ==============================
+   SERVICIOS - DASHBOARD ADMIN COMPLETO
+============================== */
+
+/* Contenedor principal */
+.service-container {
+  font-family: 'Poppins', 'Quicksand', sans-serif;
+  color: #fff;
+  padding: 2rem;
+  background: linear-gradient(to bottom, #1f2a3a, #1f3145);
+  min-height: 100%;
+}
+
+/* Título */
+.service-container .title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #a0d8f1;
+  text-shadow: 0 0 3px rgba(160, 216, 241, 0.6);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Botón volver */
+.back-button {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.back-button button {
+  background: #4db6ff;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.back-button button:hover {
+  background: #80cfff;
+  transform: scale(1.05);
+}
+
+/* Formulario */
+.service-form {
+  background: rgba(255,255,255,0.05);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 6px 15px rgba(0,255,255,0.08);
+  backdrop-filter: blur(10px);
+}
+
+.service-form .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.service-form label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.service-form input,
+.service-form select {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #4db6ff;
+  background: rgba(0,0,0,0.12);
+  color: #fff;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.service-form input:focus,
+.service-form select:focus {
+  border-color: #80cfff;
+  box-shadow: 0 0 5px rgba(128,207,255,0.5);
+}
+
+/* Botones del formulario */
+.form-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.form-buttons button[type="submit"] {
+  background: #4db6ff;
+  color: #fff;
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.form-buttons button[type="submit"]:hover {
+  background: #80cfff;
+  transform: scale(1.05);
+  box-shadow: 0 0 6px rgba(128,207,255,0.6);
+}
+
+.form-buttons button[type="button"] {
+  background: #ffb74d;
+  color: #fff;
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.form-buttons button[type="button"]:hover {
+  background: #ffc97f;
+  transform: scale(1.05);
+  box-shadow: 0 0 6px rgba(255,201,127,0.6);
+}
+
+/* Mensaje de feedback */
+.message-box {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #a0d8f1;
+  font-weight: 600;
+}
+
+/* Tabla de servicios */
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 2rem;
+}
+
+.service-table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0,255,255,0.08);
+}
+
+.service-table th,
+.service-table td {
+  padding: 0.75rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: rgba(0,0,0,0.12);
+}
+
+.service-table th {
+  font-weight: 600;
+  color: #a0d8f1;
+  background: #222d44;
+}
+
+.service-table td {
+  color: #fff;
+}
+
+/* Botones de acción */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.action-buttons button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.action-buttons button:first-child {
+  background: #ffd54f;
+  color: #222;
+}
+
+.action-buttons button:first-child:hover {
+  background: #ffe082;
+  transform: scale(1.1);
+  box-shadow: 0 0 6px rgba(255,224,130,0.6);
+}
+
+.action-buttons button:last-child {
+  background: #ff7f7f;
+  color: #fff;
+}
+
+.action-buttons button:last-child:hover {
+  background: #ff9f9f;
+  transform: scale(1.1);
+  box-shadow: 0 0 6px rgba(255,159,159,0.6);
+}
+
+/* Modal de confirmación */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal {
+  background: #1f2a3a;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(0,128,255,0.2);
+}
+
+.modal h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #a0d8f1;
+  text-shadow: 0 0 3px rgba(160,216,241,0.6);
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.confirm-btn {
+  background: #4db6ff;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.confirm-btn:hover {
+  background: #80cfff;
+  transform: scale(1.05);
+  box-shadow: 0 0 6px rgba(128,207,255,0.6);
+}
+
+.cancel-btn {
+  background: #ffb74d;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.cancel-btn:hover {
+  background: #ffc97f;
+  transform: scale(1.05);
+  box-shadow: 0 0 6px rgba(255,201,127,0.6);
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+/* 📱 Celular pequeño (≤480px) */
+@media (max-width: 480px) {
+  .service-container {
+    padding: 1rem;
+  }
+
+  .service-container .title {
+    font-size: 1.4rem;
+  }
+
+  .service-form {
+    padding: 1rem;
+  }
+
+  .service-form input,
+  .service-form select {
+    font-size: 0.9rem;
+  }
+
+  .form-buttons {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .form-buttons button {
+    width: 100%;
+  }
+
+  .service-table {
+    min-width: 400px;
+  }
+
+  .service-table th, .service-table td {
+    font-size: 0.75rem;
+    padding: 0.4rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .action-buttons button {
+    width: 100%;
+    font-size: 0.8rem;
+  }
+}
+
+/* 📱 Tablet (481px – 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .service-container {
+    padding: 1.5rem;
+  }
+
+  .service-container .title {
+    font-size: 1.6rem;
+  }
+
+  .service-form {
+    padding: 1.2rem;
+  }
+
+  .service-form input,
+  .service-form select {
+    font-size: 0.95rem;
+  }
+
+  .form-buttons {
+    flex-wrap: wrap;
+  }
+
+  .form-buttons button {
+    flex: 1;
+  }
+
+  .service-table {
+    min-width: 500px;
+  }
+
+  .service-table th, .service-table td {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+
+  .action-buttons button {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* 💻 Computador (≥769px) */
+@media (min-width: 769px) {
+  .service-container {
+    padding: 2rem;
+  }
+
+  .service-table th, .service-table td {
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+
+  .action-buttons button {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+}

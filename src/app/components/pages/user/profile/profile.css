@@ -1,0 +1,219 @@
+/* ==============================
+   USER - PERFIL DE USUARIO
+============================== */
+
+/* Contenedor principal */
+.profile-container {
+  font-family: 'Poppins', 'Quicksand', sans-serif;
+  background: #f0f4ff; /* Fondo suave User */
+  padding: 3rem 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #1f2a3a;
+  text-align: center;
+}
+
+/* Título */
+.profile-container h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #4b6cb7;
+  margin-bottom: 2rem;
+}
+
+/* Mensajes */
+.message.success, .message.error {
+  width: 100%;
+  max-width: 500px;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.message.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.message.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Vista normal de perfil */
+.profile-container p {
+  font-size: 1.3rem;
+  margin: 0.8rem 0;
+}
+
+.profile-container strong {
+  color: #4b6cb7;
+}
+
+/* Botones */
+.profile-container button {
+  padding: 0.8rem 1.6rem;
+  border-radius: 10px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  margin: 0.5rem;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+/* Editar perfil */
+.profile-container button.edit-btn {
+  background-color: #ffd54f;
+  color: #222;
+}
+
+.profile-container button.edit-btn:hover {
+  background-color: #ffe082;
+  transform: scale(1.05);
+  box-shadow: 0 0 8px rgba(255,224,130,0.6);
+}
+
+/* Volver al dashboard */
+.profile-container button.back-btn {
+  background-color: #4db6ff;
+  color: #fff;
+}
+
+.profile-container button.back-btn:hover {
+  background-color: #80cfff;
+  transform: scale(1.05);
+  box-shadow: 0 0 8px rgba(128,207,255,0.6);
+}
+
+/* Inputs de edición */
+.profile-container input {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  padding: 0.8rem;
+  margin: 0.8rem 0;
+  border-radius: 10px;
+  border: 1px solid #4db6ff;
+  background: rgba(255,255,255,0.9);
+  color: #1f2a3a;
+  font-size: 1.1rem;
+  text-align: center;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.profile-container input:focus {
+  border-color: #80cfff;
+  box-shadow: 0 0 6px rgba(128,207,255,0.5);
+}
+
+/* Modal de confirmación */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal {
+  background: #f0f4ff;
+  padding: 2.5rem;
+  border-radius: 15px;
+  text-align: center;
+  color: #1f2a3a;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.25);
+  max-width: 450px;
+  width: 90%;
+}
+
+.modal h3 {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: #4b6cb7;
+}
+
+.modal p {
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+}
+
+.modal-actions button {
+  padding: 0.8rem 1.6rem;
+  border-radius: 10px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  margin: 0 0.5rem;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-confirm {
+  background-color: #4db6ff;
+  color: #fff;
+}
+
+.btn-confirm:hover {
+  background-color: #80cfff;
+  transform: scale(1.05);
+  box-shadow: 0 0 8px rgba(128,207,255,0.6);
+}
+
+.btn-cancel {
+  background-color: #ffb74d;
+  color: #fff;
+}
+
+.btn-cancel:hover {
+  background-color: #ffc97f;
+  transform: scale(1.05);
+  box-shadow: 0 0 8px rgba(255,201,127,0.6);
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+@media (max-width: 767px) {
+  .profile-container h2 {
+    font-size: 2rem;
+  }
+
+  .profile-container p {
+    font-size: 1.1rem;
+  }
+
+  .profile-container button {
+    width: 90%;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+  }
+
+  .profile-container input {
+    width: 90%;
+    font-size: 1rem;
+  }
+
+  .modal h3 {
+    font-size: 1.5rem;
+  }
+
+  .modal p {
+    font-size: 1rem;
+  }
+
+  .modal-actions button {
+    width: 40%;
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,229 @@
+/* ==============================
+   CONTENEDOR PRINCIPAL Y FONDO
+============================== */
+.payment-container {
+    font-family: 'Quicksand', 'Poppins', sans-serif;
+    color: #d0f0ff; /* texto menos intenso */
+    text-align: center;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 2rem 1rem;
+    position: relative;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #0a1f2b, #1f3a4b, #2b5062);
+}
+
+.payment-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: repeating-linear-gradient(
+        45deg,
+        rgba(0, 255, 255, 0.05) 0px,
+        rgba(0, 255, 255, 0.05) 2px,
+        transparent 2px,
+        transparent 20px
+    );
+    z-index: -1;
+    animation: moveLines 25s linear infinite;
+}
+
+.payment-container::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://www.transparenttextures.com/patterns/triangles.png');
+    opacity: 0.03;
+    z-index: -1;
+}
+
+@keyframes moveLines {
+    0% { background-position: 0 0; }
+    100% { background-position: 1000px 1000px; }
+}
+
+/* ==============================
+   TITULOS Y TABLAS
+============================== */
+.payment-container h2, .payment-container h3, .payment-container h4 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 3px #00ffff, 0 0 5px #1fa2ff;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.table th, .table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: #d0f0ff;
+    font-size: 0.95rem;
+}
+
+.table th {
+    background: rgba(0,255,255,0.1);
+    font-weight: 700;
+    text-shadow: 0 0 2px #00ffff;
+}
+
+/* ==============================
+   MÉTODOS DE PAGO
+============================== */
+.payment-methods {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem; /* espacio extra debajo de las cards */
+}
+
+.payment-methods .card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 1rem;
+    cursor: pointer;
+    text-align: center;
+    width: 150px;
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    backdrop-filter: blur(10px);
+}
+
+.payment-methods .card.selected {
+    border: 2px solid #00ffff;
+    box-shadow: 0 6px 15px rgba(0,255,255,0.3);
+}
+
+.payment-methods .card img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+}
+
+.payment-methods .card p, .payment-methods .card small {
+    color: #d0f0ff;
+    margin: 0;
+}
+
+/* ==============================
+   BOTONES
+============================== */
+.payment-container button.btn-success {
+    background: linear-gradient(90deg, #1fa2ff, #00ffff);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    font-weight: 700;
+    border-radius: 10px;
+    color: #000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem; /* separación respecto a las cards */
+}
+
+.payment-container button.btn-success:hover {
+    background: linear-gradient(90deg, #00ffff, #1fa2ff);
+}
+
+/* ==============================
+   TOAST
+============================== */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0,255,255,0.1);
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 600;
+    text-shadow: 0 0 3px #00ffff;
+    z-index: 2000;
+}
+
+/* ==============================
+   MODALES
+============================== */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal, .modal-content {
+    background: rgba(30,50,70,0.95);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    color: #d0f0ff;
+    font-family: 'Quicksand', 'Poppins', sans-serif;
+    box-shadow: 0 8px 20px rgba(0,255,255,0.3);
+}
+
+.modal h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #00ffff;
+    text-shadow: 0 0 3px #00ffff, 0 0 5px #1fa2ff;
+}
+
+.modal p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #d0f0ff;
+    margin-bottom: 1rem;
+}
+
+.modal button {
+    margin: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.modal button.btn-primary {
+    background: linear-gradient(90deg, #1fa2ff, #00ffff);
+    color: #000;
+}
+
+.modal button.btn-primary:hover {
+    background: linear-gradient(90deg, #00ffff, #1fa2ff);
+}
+
+.modal button.btn-light {
+    background: #ffffff;
+    color: #000;
+}
+
+.modal button.btn-light:hover {
+    background: #e0e0e0;
+}

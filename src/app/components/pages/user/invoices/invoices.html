@@ -1,0 +1,66 @@
+<div class="invoices-container">
+  <h2>📑 Mis Facturas</h2>
+
+  <div *ngIf="invoices.length === 0" class="empty">
+    No tienes facturas registradas todavía.
+  </div>
+
+  <div *ngFor="let f of invoices" class="invoice-card">
+    <div class="invoice-header">
+      <div>
+        <div class="muted">ID</div>
+        <div class="mono">{{ f._id }}</div>
+      </div>
+      <div>
+        <div class="muted">Total</div>
+        <div class="strong">{{ f.total | currency:'COP' }}</div>
+      </div>
+      <div>
+        <div class="muted">Fecha</div>
+        <div>{{ f.createdAt | date:'short' }}</div>
+      </div>
+      <div>
+        <div class="muted">Payment Method</div>
+        <div>{{ f.paymentMethod }}</div>
+      </div>
+      <div>
+        <div class="muted">Status</div>
+        <div>{{ f.status }}</div>
+      </div>
+      <button class="btn btn-info" (click)="toggleExpand(f._id)">
+        {{ expandedId === f._id ? '▲ Ver menos' : '▼ Ver más' }}
+      </button>
+    </div>
+
+    <div class="invoice-details" *ngIf="expandedId === f._id">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cant.</th>
+            <th>Precio</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let it of f.products">
+            <td>{{ it?.productId?.name || 'Producto' }}</td>
+            <td>{{ it?.quantity }}</td>
+            <td>{{ it?.productId?.price | currency:'COP' }}</td>
+            <td>{{ (it?.productId?.price || 0) * (it?.quantity || 0) | currency:'COP' }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="total-row">
+        <span>Total</span>
+        <strong>{{ f.total | currency:'COP' }}</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón volver al Dashboard -->
+  <div class="back-container">
+    <button class="back-btn" (click)="volverDashboard()">⬅ Volver al Dashboard</button>
+  </div>
+</div>

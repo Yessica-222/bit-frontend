@@ -1,0 +1,313 @@
+/* ==============================
+   USER - MIS CITAS
+============================== */
+
+/* Contenedor principal */
+.appointments-container {
+  font-family: 'Poppins', 'Quicksand', sans-serif;
+  background: #f9faff; /* fondo general User */
+  padding: 2rem;
+  min-height: 100vh;
+  color: #1f2a3a;
+}
+
+/* Título */
+.appointments-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #4b6cb7;
+  margin-bottom: 1.5rem;
+}
+
+/* Mensajes de feedback */
+.message {
+  text-align: center;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.message.success {
+  background: #d4f1c5;
+  color: #2e7d32;
+}
+
+.message.error {
+  background: #ffcccc;
+  color: #c62828;
+}
+
+/* Formulario */
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: #1f2a3a;
+}
+
+.form select,
+.form input {
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #4b6cb7;
+  background: #f0f4ff;
+  color: #1f2a3a;
+  outline: none;
+  min-width: 180px;
+  transition: all 0.3s ease;
+}
+
+.form select:focus,
+.form input:focus {
+  border-color: #80aaff;
+  box-shadow: 0 0 5px rgba(128,170,255,0.5);
+}
+
+/* Botones del formulario */
+.form button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.form button:nth-child(3n+1) { /* Agendar / Crear */
+  background: #4db6ff;
+  color: #fff;
+}
+
+.form button:nth-child(3n+1):hover {
+  background: #80cfff;
+  transform: scale(1.05);
+  box-shadow: 0 0 6px rgba(128,207,255,0.6);
+}
+
+.form button:nth-child(3n+2) { /* Guardar cambios */
+  background: #ffd54f;
+  color: #222;
+}
+
+.form button:nth-child(3n+2):hover {
+  background: #ffe082;
+  transform: scale(1.05);
+  box-shadow: 0 0 6px rgba(255,224,130,0.6);
+}
+
+.form button:nth-child(3n+3) { /* Cancelar */
+  background: #ff7f7f;
+  color: #fff;
+}
+
+.form button:nth-child(3n+3):hover {
+  background: #ff9f9f;
+  transform: scale(1.05);
+  box-shadow: 0 0 6px rgba(255,159,159,0.6);
+}
+
+/* Tabla de citas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+
+thead th {
+  background: #4b6cb7;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.75rem;
+  text-align: center;
+}
+
+tbody td {
+  padding: 0.6rem;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  background: #f0f4ff;
+  color: #1f2a3a;
+}
+
+/* Botones de acción en tabla */
+tbody td button {
+  padding: 0.4rem 0.8rem;
+  margin: 0 0.2rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+tbody td button:first-child { /* Editar */
+  background: #ffd54f;
+  color: #222;
+}
+
+tbody td button:first-child:hover {
+  background: #ffe082;
+  transform: scale(1.1);
+}
+
+tbody td button:last-child { /* Eliminar */
+  background: #ff7f7f;
+  color: #fff;
+}
+
+tbody td button:last-child:hover {
+  background: #ff9f9f;
+  transform: scale(1.1);
+}
+
+/* Botón de volver al dashboard */
+.back-btn {
+  display: block;
+  margin: 0 auto;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  background: #4db6ff;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background: #80cfff;
+  transform: scale(1.05);
+  box-shadow: 0 0 6px rgba(128,207,255,0.6);
+}
+
+/* Modal de confirmación */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(31,42,58,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: #f0f4ff;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  color: #1f2a3a;
+  min-width: 300px;
+}
+
+.modal-content p {
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.modal-buttons button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 0 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.modal-buttons button:first-child { /* Confirmar */
+  background: #4db6ff;
+  color: #fff;
+}
+
+.modal-buttons button:first-child:hover {
+  background: #80cfff;
+  transform: scale(1.05);
+  box-shadow: 0 0 6px rgba(128,207,255,0.6);
+}
+
+.modal-buttons button:last-child { /* Cancelar */
+  background: #ff7f7f;
+  color: #fff;
+}
+
+.modal-buttons button:last-child:hover {
+  background: #ff9f9f;
+  transform: scale(1.05);
+  box-shadow: 0 0 6px rgba(255,159,159,0.6);
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+/* 📱 Celulares pequeños (máx 480px) */
+@media (max-width: 480px) {
+  .appointments-container {
+    padding: 1rem;
+  }
+
+  .appointments-container h2 {
+    font-size: 1.5rem;
+  }
+
+  table th, table td {
+    font-size: 0.75rem;
+    padding: 0.4rem;
+  }
+
+  .form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form select, .form input,
+  .form button {
+    width: 90%;
+  }
+}
+
+/* 📲 Tablets (481px a 1024px) */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .appointments-container {
+    padding: 1.5rem;
+  }
+
+  .appointments-container h2 {
+    font-size: 1.7rem;
+  }
+
+  table th, table td {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  .form select, .form input {
+    min-width: 150px;
+  }
+}
+
+/* 💻 Computadores (desde 1025px en adelante) */
+@media (min-width: 1025px) {
+  .appointments-container h2 {
+    font-size: 2rem;
+  }
+
+  table th, table td {
+    font-size: 1rem;
+    padding: 0.6rem;
+  }
+}

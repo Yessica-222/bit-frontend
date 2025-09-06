@@ -1,0 +1,39 @@
+<div class="profile-container">
+  <h2>Perfil de Usuario</h2>
+
+  <!-- Mensajes -->
+  <div *ngIf="success" class="message success">{{ success }}</div>
+  <div *ngIf="error" class="message error">{{ error }}</div>
+
+  <!-- Vista normal -->
+  <div *ngIf="!editMode">
+    <p><strong>Nombre:</strong> {{ user.name }}</p>
+    <p><strong>Correo:</strong> {{ user.email }}</p>
+    <button (click)="enableEdit()">✏ Editar</button>
+    <button (click)="goBack()">⬅ Volver al Dashboard</button>
+  </div>
+
+  <!-- Vista edición -->
+  <div *ngIf="editMode">
+    <label>Nombre:</label>
+    <input type="text" [(ngModel)]="user.name" />
+
+    <label>Correo:</label>
+    <input type="email" [(ngModel)]="user.email" />
+
+    <button (click)="openConfirmModal()">💾 Guardar</button>
+    <button (click)="cancelEdit()">❌ Cancelar</button>
+  </div>
+</div>
+
+<!-- 🔹 Modal de confirmación -->
+<div class="modal-overlay" *ngIf="showConfirmModal">
+  <div class="modal">
+    <h3>Confirmar actualización</h3>
+    <p>¿Estás seguro de que deseas actualizar tu perfil?</p>
+    <div class="modal-actions">
+      <button class="btn-confirm" (click)="confirmSave()">✔ Sí</button>
+      <button class="btn-cancel" (click)="closeConfirmModal()">✖ No</button>
+    </div>
+  </div>
+</div>

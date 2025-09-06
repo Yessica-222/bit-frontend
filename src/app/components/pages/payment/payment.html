@@ -1,0 +1,70 @@
+<div class="payment-container">
+  <h2>Resumen de Compra</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cartItems">
+        <td>{{ item.name }}</td>
+        <td>{{ item.price | currency:'COP' }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.price * item.quantity | currency:'COP' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Total: {{ total | currency:'COP' }}</h3>
+
+  <h4>Selecciona tu método de pago</h4>
+  <div class="payment-methods">
+    <div
+      class="card"
+      *ngFor="let method of paymentMethods"
+      [class.selected]="selectedMethod === method.name"
+      (click)="seleccionarMetodo(method.name)"
+      tabindex="0"
+    >
+      <img [src]="method.logo" [alt]="method.name" />
+      <p>{{ method.name }}</p>
+      <small>{{ method.label }}</small>
+    </div>
+  </div>
+
+  <button class="btn btn-success mt-3" [disabled]="creating" (click)="confirmarPago()">
+    {{ creating ? 'Generando factura...' : 'Confirmar Compra' }}
+  </button>
+</div>
+
+<!-- Toast -->
+<div *ngIf="showToast" class="toast">{{ toastMessage }}</div>
+
+<!-- Modal Login requerido -->
+<div class="modal-backdrop" *ngIf="showLoginModal">
+  <div class="modal">
+    <h3>Debes iniciar sesión</h3>
+    <p>Para continuar con el pago, por favor inicia sesión.</p>
+    <div class="modal-actions">
+      <button class="btn btn-primary" (click)="goToLogin()">Iniciar sesión</button>
+      <button class="btn btn-light" (click)="showLoginModal = false">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Éxito -->
+<div class="modal-backdrop" *ngIf="showSuccessModal">
+  <div class="modal">
+    <div class="check">✔</div>
+    <h3>Compra registrada</h3>
+    <p>Tu factura fue generada. Estado: <strong>Pendiente por confirmar pago</strong>.</p>
+    <div class="modal-actions">
+      <button class="btn btn-success" (click)="goToInvoices()">Ver mis facturas</button>
+    </div>
+  </div>
+</div>

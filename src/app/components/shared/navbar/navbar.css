@@ -1,0 +1,149 @@
+/* ==============================
+   NAVBAR ESTILO TECNOLÓGICO RESPONSIVE
+============================== */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 2rem;
+  background: linear-gradient(90deg, #1f3a4b, #2b5062, #1f3a4b);
+  font-family: 'Quicksand', 'Poppins', sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0,255,255,0.2);
+}
+
+/* Logo */
+.navbar .navbar-brand {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #00ffff;
+  text-decoration: none;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #1fa2ff;
+  transition: transform 0.3s, text-shadow 0.3s;
+}
+
+.navbar .navbar-brand:hover {
+  transform: scale(1.05);
+  text-shadow: 0 0 10px #00ffff, 0 0 20px #1fa2ff;
+}
+
+/* Links */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s, text-shadow 0.3s, transform 0.3s;
+}
+
+.navbar a:hover {
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #1fa2ff;
+  transform: scale(1.05);
+}
+
+/* Carrito */
+.cart-link {
+  position: relative;
+  font-size: 1.3rem;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: #ff6f00;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+  box-shadow: 0 0 5px #ff6f00;
+}
+
+/* BOTÓN HAMBURGER SOLO EN CELULAR */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #00ffff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* ==============================
+   RESPONSIVE QUERIES
+============================== */
+
+/* Tablets (<=1024px) */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 0.6rem 1.5rem;
+  }
+
+  .navbar .navbar-brand {
+    font-size: 1.5rem;
+  }
+
+  .navbar-links {
+    gap: 0.7rem;
+  }
+}
+
+/* Celulares (<=768px) */
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    width: 100%;
+    display: none; /* oculto por defecto */
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .navbar-links.show {
+    display: flex; /* cuando se active con JS */
+  }
+
+  .navbar a {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+  }
+}
+
+/* Móviles muy pequeños (<=480px) */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.5rem 1rem;
+  }
+
+  .navbar .navbar-brand {
+    font-size: 1.2rem;
+  }
+
+  .navbar a {
+    font-size: 0.9rem;
+  }
+}

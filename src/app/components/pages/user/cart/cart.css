@@ -1,0 +1,320 @@
+/* ==============================
+   CONTENEDOR PRINCIPAL DEL CARRITO
+============================== */
+.cart-container,
+.container {
+  font-family: 'Quicksand', 'Poppins', sans-serif;
+  color: #fff;
+  background: linear-gradient(135deg, #0a1f2b, #1f3a4b, #2b5062);
+  padding: 2rem 1rem;
+  min-height: 100vh;
+}
+
+/* ==============================
+   TITULOS
+============================== */
+.cart-container h2,
+.container h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #1fa2ff, #00ffff, #1fa2ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 2px #00ffff, 0 0 5px #1fa2ff; /* Reducido para mejorar legibilidad */
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* ==============================
+   TARJETAS DE PRODUCTOS
+============================== */
+.card {
+  display: flex;
+  align-items: flex-start;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 1rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+  backdrop-filter: blur(10px);
+  margin-bottom: 1rem;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 255, 255, 0.3);
+}
+
+/* ==============================
+   IMAGEN DEL PRODUCTO
+============================== */
+.card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 1rem;
+}
+
+/* ==============================
+   INFORMACIÓN DEL PRODUCTO
+============================== */
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.card h5 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #00ffff;
+  text-shadow: 0 0 2px #00ffff, 0 0 5px #1fa2ff; /* menos borroso */
+  margin-bottom: 0.25rem;
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: #fff;
+  margin: 0.1rem 0;
+}
+
+.text-muted {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* ==============================
+   CONTROLES DE CANTIDAD
+============================== */
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.quantity-control button {
+  background: linear-gradient(135deg, #00ffff, #1fa2ff);
+  border: none;
+  color: #000;
+  font-weight: 700;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.quantity-control button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.5);
+}
+
+.quantity {
+  font-weight: 700;
+  min-width: 20px;
+  text-align: center;
+  color: #00ffff;
+}
+
+/* ==============================
+   SUBTOTAL
+============================== */
+.card .fw-bold {
+  font-weight: 700;
+  color: #00ffff;
+  text-shadow: 0 0 2px #00ffff;
+  margin-top: 0.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* ==============================
+   BOTONES DE ACCIÓN
+============================== */
+.action-buttons {
+  display: flex;
+  gap: 10px; /* Separación entre botones */
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ff4c4c, #ff0000);
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 5px 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-danger:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(255, 76, 76, 0.5);
+}
+
+.btn-warning {
+  background: linear-gradient(135deg, #ffb200, #ffd700);
+  border: none;
+  color: #000;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 8px 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-warning:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(255, 178, 0, 0.5);
+}
+
+.btn-success {
+  background: linear-gradient(90deg, #1fa2ff, #00ffff, #1fa2ff);
+  border: none;
+  color: #000;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 8px 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-success:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 255, 255, 0.5);
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+/* Tablets (<=1024px) */
+@media (max-width: 1024px) {
+  .cart-container,
+  .container {
+    padding: 1.5rem;
+  }
+
+  .cart-container h2,
+  .container h2 {
+    font-size: 1.7rem;
+  }
+
+  .card {
+    padding: 0.8rem;
+  }
+
+  .card img {
+    width: 90px;
+    height: 90px;
+  }
+
+  .btn-warning,
+  .btn-success {
+    padding: 6px 12px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Celulares medianos (<=768px) */
+@media (max-width: 768px) {
+  .cart-container,
+  .container {
+    padding: 1rem;
+  }
+
+  .cart-container h2,
+  .container h2 {
+    font-size: 1.4rem;
+  }
+
+  .card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .card img {
+    margin: 0 0 0.5rem 0;
+    width: 80px;
+    height: 80px;
+  }
+
+  .card h5 {
+    font-size: 1rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+  }
+
+  .quantity-control {
+    justify-content: center;
+  }
+
+  .quantity-control button {
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
+  }
+
+  .action-buttons {
+    justify-content: center;
+  }
+
+  .btn-danger,
+  .btn-warning,
+  .btn-success {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Móviles pequeños (<=480px) */
+@media (max-width: 480px) {
+  .cart-container,
+  .container {
+    padding: 0.8rem;
+  }
+
+  .cart-container h2,
+  .container h2 {
+    font-size: 1.2rem;
+  }
+
+  .card {
+    padding: 0.7rem;
+  }
+
+  .card img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .card h5 {
+    font-size: 0.95rem;
+  }
+
+  .card p {
+    font-size: 0.8rem;
+  }
+
+  .quantity-control button {
+    width: 24px;
+    height: 24px;
+    font-size: 0.8rem;
+  }
+
+  .quantity {
+    font-size: 0.85rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .action-buttons button {
+    width: 100%;
+  }
+}

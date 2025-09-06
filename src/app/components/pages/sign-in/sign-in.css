@@ -1,0 +1,252 @@
+/* ==============================
+   CONTENEDOR PRINCIPAL LOGIN
+============================== */
+.login-container {
+    font-family: 'Quicksand', 'Poppins', sans-serif;
+    color: #d0f0ff; /* texto menos intenso */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    background: linear-gradient(135deg, #0a1f2b, #1f3a4b, #2b5062);
+    position: relative;
+    overflow-x: hidden;
+}
+
+.login-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: repeating-linear-gradient(
+        45deg,
+        rgba(0, 255, 255, 0.05) 0px,
+        rgba(0, 255, 255, 0.05) 2px,
+        transparent 2px,
+        transparent 20px
+    );
+    z-index: -1;
+    animation: moveLines 25s linear infinite;
+}
+
+.login-container::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://www.transparenttextures.com/patterns/triangles.png');
+    opacity: 0.03;
+    z-index: -1;
+}
+
+@keyframes moveLines {
+    0% { background-position: 0 0; }
+    100% { background-position: 1000px 1000px; }
+}
+
+/* ==============================
+   FORMULARIO
+============================== */
+.login-container form {
+    background: rgba(30,50,70,0.95);
+    padding: 2rem 2.5rem;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 8px 20px rgba(0,255,255,0.3);
+    text-align: center;
+}
+
+.login-container h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #00ffff;
+    text-shadow: 0 0 3px #00ffff, 0 0 5px #1fa2ff;
+}
+
+/* ==============================
+   CAMPOS DE FORMULARIO
+============================== */
+.form-group {
+    text-align: left;
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #d0f0ff;
+    text-shadow: 0 0 2px #00ffff;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    border: 1px solid rgba(0,255,255,0.3);
+    background: rgba(255,255,255,0.05);
+    color: #d0f0ff;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #00ffff;
+    box-shadow: 0 0 5px rgba(0,255,255,0.5);
+}
+
+.form-group small {
+    color: #ff6666;
+    font-size: 0.85rem;
+    display: block;
+    margin-top: 0.25rem;
+}
+
+/* ==============================
+   BOTÓN
+============================== */
+.login-container button[type="submit"] {
+    width: 100%;
+    padding: 0.7rem;
+    border-radius: 12px;
+    border: none;
+    font-weight: 700;
+    font-size: 1rem;
+    background: linear-gradient(90deg, #1fa2ff, #00ffff);
+    color: #000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.login-container button[type="submit"]:hover {
+    background: linear-gradient(90deg, #00ffff, #1fa2ff);
+}
+
+.login-container button[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ==============================
+   TEXTO DE REGISTRO
+============================== */
+.register-text {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: #d0f0ff;
+}
+
+.register-text a {
+    color: #00ffff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.register-text a:hover {
+    color: #1fa2ff;
+    text-decoration: underline;
+}
+
+/* ==============================
+   RESPONSIVE - LOGIN
+============================== */
+
+/* Tablets (<=1024px) */
+@media (max-width: 1024px) {
+  .login-container {
+    padding: 1.5rem;
+  }
+
+  .login-container form {
+    max-width: 360px;
+    padding: 1.8rem 2rem;
+  }
+
+  .login-container h2 {
+    font-size: 1.8rem;
+  }
+
+  .form-group input {
+    font-size: 0.95rem;
+    padding: 0.55rem 0.9rem;
+  }
+}
+
+/* Celulares medianos (<=768px) */
+@media (max-width: 768px) {
+  .login-container {
+    padding: 1.2rem;
+  }
+
+  .login-container form {
+    max-width: 320px;
+    padding: 1.5rem;
+  }
+
+  .login-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    font-size: 0.9rem;
+  }
+
+  .form-group input {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .login-container button[type="submit"] {
+    font-size: 0.95rem;
+    padding: 0.65rem;
+  }
+
+  .register-text {
+    font-size: 0.85rem;
+  }
+}
+
+/* Celulares pequeños (<=480px) */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 1rem;
+  }
+
+  .login-container form {
+    max-width: 280px;
+    padding: 1.2rem;
+  }
+
+  .login-container h2 {
+    font-size: 1.3rem;
+  }
+
+  .form-group label {
+    font-size: 0.85rem;
+  }
+
+  .form-group input {
+    font-size: 0.85rem;
+    padding: 0.45rem 0.75rem;
+  }
+
+  .login-container button[type="submit"] {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+
+  .register-text {
+    font-size: 0.8rem;
+  }
+}

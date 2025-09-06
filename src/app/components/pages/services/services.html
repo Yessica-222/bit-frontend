@@ -1,0 +1,18 @@
+<div class="services-container">
+  <div *ngFor="let service of services" class="service-card">
+    <h3>{{ service.name }}</h3>
+    <p>{{ service.description }}</p>
+    <p>Duración: {{ service.duration }} min</p>
+    <p>Precio: ${{ service.price }}</p>
+    <button (click)="openLoginModal(service)">Agendar cita</button>
+  </div>
+</div>
+
+<!-- Modal -->
+<div *ngIf="showLoginModal" class="modal">
+  <div class="modal-content">
+    <h3>Debes iniciar sesión para agendar</h3>
+    <button (click)="redirectToLogin()">Iniciar sesión</button>
+    <button (click)="closeLoginModal()">Cancelar</button>
+  </div>
+</div>

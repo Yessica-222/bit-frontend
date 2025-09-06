@@ -1,0 +1,48 @@
+<div class="container mt-4">
+  <h2>🛒 Mi Carrito</h2>
+
+  <!-- Carrito vacío -->
+  <div *ngIf="items.length === 0" class="alert alert-info mt-3">
+    Tu carrito está vacío.
+  </div>
+
+  <!-- Lista de productos (cada producto en su tarjeta) -->
+  <div *ngFor="let item of items" class="card mb-3 p-3 shadow-sm">
+    <div class="row g-0 align-items-center">
+      <div class="col-md-2">
+        <img [src]="item.image" class="img-fluid rounded" alt="{{ item.name }}">
+      </div>
+
+      <div class="col-md-6">
+        <h5>{{ item.name }}</h5>
+        <p *ngIf="item.description">{{ item.description }}</p>
+        <p class="text-muted mb-0">Precio: ${{ item.price }}</p>
+      </div>
+
+      <div class="col-md-4 d-flex align-items-center flex-wrap">
+        <!-- Controles de cantidad -->
+<div class="quantity-control me-3">
+  <button class="btn btn-outline-secondary btn-sm" (click)="decrease(item)">-</button>
+  <span class="quantity">{{ item.quantity }}</span>
+  <button class="btn btn-outline-secondary btn-sm" (click)="increase(item)">+</button>
+</div>
+
+
+        <!-- Subtotal -->
+        <span class="ms-3 fw-bold">Subtotal: ${{ item.price * item.quantity }}</span>
+
+        <!-- Eliminar -->
+        <button class="btn btn-danger btn-sm ms-3" (click)="removeItem(item)">Eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Total & acciones -->
+  <div class="d-flex justify-content-between align-items-center mt-4" *ngIf="items.length > 0">
+    <h4>Total: ${{ total }}</h4>
+    <div>
+      <button class="btn btn-warning me-2" (click)="clearCart()">Vaciar carrito</button>
+      <button class="btn btn-success" (click)="goToPayment()">Comprar</button>
+    </div>
+  </div>
+</div>

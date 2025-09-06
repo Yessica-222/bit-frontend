@@ -1,0 +1,256 @@
+/* ==============================
+   USER - MIS FACTURAS
+============================== */
+
+/* Contenedor principal */
+.invoices-container {
+  font-family: 'Poppins', 'Quicksand', sans-serif;
+  background: #f9faff; /* fondo general User */
+  padding: 2rem;
+  min-height: 100vh;
+  color: #1f2a3a;
+}
+
+/* Título */
+.invoices-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #4b6cb7;
+  margin-bottom: 1.5rem;
+}
+
+/* Mensaje cuando no hay facturas */
+.empty {
+  text-align: center;
+  padding: 1rem;
+  background: #e3f2fd;
+  color: #1f2a3a;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* Tarjetas de factura */
+.invoice-card {
+  background: #f0f4ff;
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  color: #1f2a3a;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.invoice-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+/* Encabezado de la tarjeta */
+.invoice-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  gap: 0.5rem;
+}
+
+.invoice-header div {
+  text-align: center;
+}
+
+.invoice-header .muted {
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.invoice-header .mono {
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: #1f2a3a;
+}
+
+.invoice-header .strong {
+  font-weight: 600;
+  color: #4b6cb7;
+}
+
+/* Botón ver más/menos */
+.invoice-header .btn-info {
+  background: #4db6ff;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.invoice-header .btn-info:hover {
+  background: #80cfff;
+  transform: scale(1.05);
+  box-shadow: 0 0 6px rgba(128,207,255,0.6);
+}
+
+/* Detalles de la factura */
+.invoice-details {
+  margin-top: 0.8rem;
+  overflow-x: auto; /* scroll horizontal si es necesario */
+}
+
+.invoice-details table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 0.8rem;
+  min-width: 500px; /* asegura que no se deforme en pantallas pequeñas */
+}
+
+.invoice-details th,
+.invoice-details td {
+  padding: 0.5rem 0.7rem;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  color: #1f2a3a;
+}
+
+.invoice-details th {
+  background: #4b6cb7;
+  color: #fff;
+  font-weight: 600;
+}
+
+.invoice-details td {
+  background: #f0f4ff;
+}
+
+/* Total al final */
+.total-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #4b6cb7;
+}
+
+/* Estilos del botón */
+.back-btn {
+  background-color: #fdd835; /* Amarillo */
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover */
+.back-btn:hover {
+  background-color: #fbc02d; /* Amarillo más fuerte */
+  transform: scale(1.05);
+}
+
+/* Active (cuando se presiona) */
+.back-btn:active {
+  background-color: #f9a825;
+  transform: scale(0.97);
+}
+
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+/* 💻 Computador normal (min-width: 988px) */
+@media (min-width: 988px) {
+  .invoice-header div, .total-row {
+    font-size: 1rem;
+  }
+}
+
+/* 📱 Tablet (768px – 987px) */
+@media (min-width: 768px) and (max-width: 987px) {
+  .invoice-header {
+    flex-wrap: wrap;
+    gap: 0.7rem;
+  }
+
+  .invoice-header div {
+    font-size: 0.9rem;
+  }
+
+  .invoice-details th, .invoice-details td {
+    font-size: 0.85rem;
+  }
+
+  .invoice-header .btn-info {
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* 📱 Celular pequeño (481px – 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .invoices-container {
+    padding: 1rem;
+  }
+
+  .invoice-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .invoice-header div {
+    width: 100%;
+    text-align: left;
+  }
+
+  .invoice-header .btn-info {
+    width: 100%;
+    text-align: center;
+  }
+
+  .invoice-details table {
+    font-size: 0.8rem;
+  }
+
+  .total-row {
+    justify-content: flex-start;
+    font-size: 0.9rem;
+  }
+}
+
+/* 📱 Celular muy pequeño (max-width: 480px) */
+@media (max-width: 480px) {
+  .invoices-container {
+    padding: 0.8rem;
+  }
+
+  .invoice-header {
+    gap: 0.5rem;
+  }
+
+  .invoice-header div {
+    font-size: 0.8rem;
+  }
+
+  .invoice-header .btn-info {
+    font-size: 0.85rem;
+    padding: 0.4rem;
+  }
+
+  .invoice-details table {
+    font-size: 0.75rem;
+    min-width: 400px;
+  }
+
+  .total-row {
+    font-size: 0.85rem;
+  }
+}

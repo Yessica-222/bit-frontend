@@ -1,0 +1,36 @@
+<div class="dashboard-header">
+  <h2>👋 Bienvenido, <span class="username">{{ userName() }}</span></h2>
+</div>
+
+<p class="subtitle">Gestiona fácilmente tu información y citas</p>
+
+<div class="cards">
+  <div class="card" (click)="goTo('/user/profile')">
+    <span class="icon">👤</span>
+    <h3>Mi Perfil</h3>
+    <p>Consulta y edita tu información personal</p>
+  </div>
+
+  <div class="card" (click)="goTo('/user/appointments')">
+    <span class="icon">📅</span>
+    <h3>Mis Citas</h3>
+    <p>Agenda, revisa y gestiona tus citas</p>
+  </div>
+
+  <div class="card" (click)="goTo('/user/invoices')">
+    <span class="icon">🧾</span>
+    <h3>Mis Facturas</h3>
+    <p>Descarga y consulta tus facturas</p>
+  </div>
+
+  <div class="card" (click)="goTo('/user/services')">
+    <span class="icon">💅</span>
+    <h3>Servicios</h3>
+    <p>Explora los servicios disponibles</p>
+  </div>
+</div>
+
+<!-- Nueva barra inferior -->
+<div class="dashboard-footer">
+  <button class="logout-btn" (click)="logout()">✖ Cerrar sesión</button>
+</div>

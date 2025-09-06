@@ -1,0 +1,79 @@
+<div class="service-container">
+  <h1 class="title">Gestión de Servicios 💆‍♀️</h1>
+
+  <!-- Botón para volver al inicio -->
+  <div class="back-button">
+    <button (click)="volverInicio()">🏠 Volver al Inicio</button>
+  </div>
+
+  <form [formGroup]="serviceForm" (ngSubmit)="submitForm()" class="service-form">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="name">Nombre</label>
+        <input id="name" type="text" formControlName="name" />
+      </div>
+      <div class="form-group">
+        <label for="description">Descripción</label>
+        <input id="description" type="text" formControlName="description" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="price">Precio</label>
+        <input id="price" type="number" formControlName="price" />
+      </div>
+      <div class="form-group">
+        <label for="duration">Duración (min)</label>
+        <input id="duration" type="number" formControlName="duration" />
+      </div>
+    </div>
+
+    <div class="form-buttons">
+      <button type="submit">
+        {{ selectedServiceId ? '✏️ Actualizar' : '➕ Crear' }}
+      </button>
+      <button type="button" (click)="resetForm()">❌ Cancelar</button>
+    </div>
+  </form>
+
+  <!-- Mensaje centrado -->
+  <div *ngIf="message" class="message-box">
+    {{ message }}
+  </div>
+
+  <table class="service-table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Duración</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let service of services()">
+        <td>{{ service.name }}</td>
+        <td>{{ service.description }}</td>
+        <td>${{ service.price }}</td>
+        <td>{{ service.duration }} min</td>
+        <td class="action-buttons">
+          <button (click)="editService(service)">✏️</button>
+          <button (click)="deleteService(service._id!)">🗑️</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Confirmación Modal -->
+  <div class="modal-overlay" *ngIf="showConfirmDialog">
+    <div class="modal">
+      <h2>¿Estás seguro que quieres {{ pendingAction === 'delete' ? 'eliminar' : 'guardar/actualizar' }} este servicio?</h2>
+      <div class="modal-buttons">
+        <button class="confirm-btn" (click)="confirmAction()">Confirmar</button>
+        <button class="cancel-btn" (click)="cancelAction()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+<div class="container">
+  <h2>Gestión de Citas</h2>
+
+  <!-- Botón para volver al inicio -->
+  <div class="back-button">
+    <button (click)="volverInicio()">🏠 Volver al Inicio</button>
+  </div>
+
+  <form [formGroup]="appointmentForm" (ngSubmit)="submitForm()">
+    <label>Usuario:</label>
+    <select formControlName="userId">
+      <option *ngFor="let user of users()" [value]="user._id">
+        {{ user.name }}
+      </option>
+    </select>
+
+    <label>Servicio:</label>
+    <select formControlName="serviceId">
+      <option *ngFor="let s of services()" [value]="s._id">{{ s.name }}</option>
+    </select>
+
+    <label>Fecha:</label>
+    <input type="datetime-local" formControlName="appointmentDate" />
+
+    <label>Status:</label>
+    <select formControlName="status">
+      <option value="pending">Pendiente</option>
+      <option value="confirmed">Confirmada</option>
+      <option value="completed">Completada</option>
+      <option value="cancelled">Cancelada</option>
+    </select>
+
+    <div class="form-buttons">
+      <button type="submit">Guardar</button>
+      <button type="button" (click)="resetForm()">Limpiar</button>
+    </div>
+  </form>
+
+  <hr />
+
+  <table>
+    <thead>
+      <tr>
+        <th>Usuario</th>
+        <th>Servicio</th>
+        <th>Fecha</th>
+        <th>Status</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let app of appointments()">
+        <td>{{ getUserNameById(app.userId) }}</td>
+        <td>{{ getServiceNameById(app.serviceId) }}</td>
+        <td>{{ app.appointmentDate | date : "short" }}</td>
+        <td>{{ app.status }}</td>
+        <td>
+  <div class="action-buttons">
+    <button type="button" class="edit-btn" (click)="editAppointment(app)">✏️ Editar</button>
+    <button type="button" class="delete-btn" (click)="deleteAppointmentPrompt(app._id!)">🗑️ Eliminar</button>
+  </div>
+</td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- MODAL DE CONFIRMACIÓN -->
+<div class="modal-backdrop" *ngIf="showConfirmDialog()">
+  <div class="modal">
+    <p>¿Deseas confirmar esta acción?</p>
+    <div class="buttons">
+      <button (click)="confirmAction()">Aceptar</button>
+      <button (click)="cancelAction()">Cancelar</button>
+    </div>
+  </div>
+</div>

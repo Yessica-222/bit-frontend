@@ -1,0 +1,120 @@
+<!-- invoices.html (Admin) -->
+<div class="invoice-container">
+  <h1 class="title">Gestión de Facturas 🧾</h1>
+
+  <div class="back-button">
+    <button (click)="volverInicio()">🏠 Volver al Inicio</button>
+  </div>
+
+  <!-- FORMULARIO FACTURA (ADMIN) -->
+  <form [formGroup]="invoiceForm" (ngSubmit)="submitForm()" class="invoice-form">
+    <h3>{{ selectedInvoiceId ? 'Editar Factura' : 'Crear Factura' }}</h3>
+
+    <div class="form-row">
+      <label>Cliente</label>
+      <select formControlName="userId">
+        <option value="">Seleccione un cliente</option>
+        <option *ngFor="let u of users" [value]="u._id">{{ u.name }} ({{ u.email }})</option>
+      </select>
+    </div>
+
+    <div formArrayName="products" class="form-row products-list">
+      <div *ngFor="let pg of productsArray.controls; let i = index" [formGroupName]="i" class="product-row">
+        <select formControlName="productId">
+          <option value="">Seleccione producto</option>
+          <option *ngFor="let p of products" [value]="p._id">{{ p.name }}</option>
+        </select>
+        <input type="number" formControlName="quantity" min="1" />
+        <button type="button" (click)="removeProduct(i)" *ngIf="productsArray.length > 1">🗑</button>
+      </div>
+      <button type="button" (click)="addProduct()">➕ Añadir producto</button>
+    </div>
+
+    <div class="form-row">
+      <label>Total</label>
+      <input formControlName="total" type="number" min="0" />
+    </div>
+
+    <div class="form-row">
+      <label>Payment method</label>
+      <select formControlName="paymentMethod">
+        <option value="cash">Cash</option>
+        <option value="transfer">Transfer</option>
+        <option value="card">Card</option>
+        <option value="nequi">Nequi</option>
+        <option value="efecty">Efecty</option>
+        <option value="bancolombia">Bancolombia</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label>Status</label>
+      <select formControlName="status">
+        <option value="pending">pending</option>
+        <option value="paid">paid</option>
+        <option value="canceled">canceled</option>
+        <option value="shipped">shipped</option>
+      </select>
+    </div>
+
+    <div class="form-buttons">
+      <button type="submit">{{ selectedInvoiceId ? 'Actualizar' : 'Crear' }}</button>
+      <button type="button" (click)="resetForm()">Cancelar</button>
+    </div>
+  </form>
+
+  <!-- LISTADO -->
+  <h3 class="subtitle">Listado de Facturas</h3>
+  <table class="invoice-table">
+    <thead>
+      <tr>
+        <th>Cliente</th>
+        <th>Productos</th>
+        <th>Total</th>
+        <th>Fecha</th>
+        <th>Status</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let invoice of invoices">
+        <td>{{ invoice.userId?.name || invoice.userId }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let p of invoice.products">
+              {{ p.productId?.name || p.productId }} - Cant: {{ p.quantity }}
+            </li>
+          </ul>
+        </td>
+        <td>{{ invoice.total | currency:'COP' }}</td>
+        <td>{{ invoice.createdAt | date:'short' }}</td>
+
+        <!-- select editable para admin (cambia status) -->
+        <td>
+          <select [(ngModel)]="invoice.status" (change)="changeStatus(invoice)">
+            <option value="pending">pending</option>
+            <option value="paid">paid</option>
+            <option value="canceled">canceled</option>
+            <option value="shipped">shipped</option>
+          </select>
+        </td>
+
+        <td>
+          <button (click)="editInvoice(invoice)">✏️</button>
+          <button (click)="deleteInvoice(invoice._id)">🗑️</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Confirm dialog -->
+  <div class="modal-overlay" *ngIf="showConfirmDialog">
+    <div class="modal">
+      <h3>Confirmar acción</h3>
+      <div class="modal-actions">
+        <button (click)="confirmAction()">Confirmar</button>
+        <button (click)="cancelAction()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

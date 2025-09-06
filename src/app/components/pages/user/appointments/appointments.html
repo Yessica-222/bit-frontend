@@ -1,0 +1,56 @@
+<div class="appointments-container">
+  <h2>Mis Citas</h2>
+
+  <div *ngIf="success" class="message success">{{ success }}</div>
+  <div *ngIf="error" class="message error">{{ error }}</div>
+
+  <div class="form">
+    <label>Servicio:</label>
+    <select [(ngModel)]="newAppointment.serviceId" name="service">
+      <option value="">-- Selecciona un servicio --</option>
+      <option *ngFor="let s of services" [value]="s._id">{{ s.name }}</option>
+    </select>
+
+    <label>Fecha:</label>
+    <input type="datetime-local" [(ngModel)]="newAppointment.appointmentDate" name="date" />
+
+    <button *ngIf="!editAppointmentId" (click)="createAppointment()">➕ Agendar Cita</button>
+    <button *ngIf="editAppointmentId" (click)="confirmUpdate()">💾 Guardar Cambios</button>
+    <button *ngIf="editAppointmentId" (click)="cancelEdit()">❌ Cancelar</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Servicio</th>
+        <th>Fecha</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let app of appointments">
+        <td>{{ app.serviceId.name }}</td>
+        <td>{{ app.appointmentDate | date:'yyyy-MM-dd HH:mm' }}</td>
+        <td>{{ app.status }}</td>
+        <td>
+          <button (click)="startEdit(app)">✏ Editar</button>
+          <button (click)="confirmDelete(app._id)">🗑 Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="back-btn" (click)="goBack()">⬅ Volver al Dashboard</button>
+</div>
+
+<!-- Modal de confirmación -->
+<div class="modal" *ngIf="showModal">
+  <div class="modal-content">
+    <p>{{ modalMessage }}</p>
+    <div class="modal-buttons">
+      <button (click)="onConfirm()">Sí</button>
+      <button (click)="onCancel()">No</button>
+    </div>
+  </div>
+</div>

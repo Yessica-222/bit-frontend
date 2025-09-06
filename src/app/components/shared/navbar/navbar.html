@@ -1,0 +1,33 @@
+<nav *ngIf="showNavbar" class="navbar">
+  <!-- Logo -->
+  <a routerLink="/" class="navbar-brand">Electro Tecnológicas Cauca</a>
+
+  <!-- Links visibles solo para visitantes o usuarios normales -->
+  <ng-container *ngIf="!isAdmin()">
+    <a routerLink="/">Inicio</a>
+    <a routerLink="/user-products">Productos</a>
+    <a routerLink="/user-services">Servicios</a>
+  </ng-container>
+
+  <!-- Carrito visible solo para visitantes o usuarios normales -->
+  <ng-container *ngIf="!isAdmin()">
+    <a routerLink="/cart" class="cart-link">
+      <i class="fas fa-shopping-cart"></i>
+      <span *ngIf="cartService.getCartCount() > 0" class="cart-badge">
+        {{ cartService.getCartCount() }}
+      </span>
+    </a>
+  </ng-container>
+
+  <!-- Visitante -->
+  <ng-container *ngIf="!signin.isLogged() && !isAdmin()">
+    <a routerLink="/sign-in">Iniciar sesión</a>
+    <a routerLink="/sign-up">Registrarse</a>
+  </ng-container>
+
+  <!-- Usuario logueado (no admin) -->
+  <ng-container *ngIf="signin.isLogged() && !isAdmin()">
+    <a routerLink="/user/dashboard">Dashboard</a>
+    <a (click)="logout()">Cerrar sesión</a>
+  </ng-container>
+</nav>

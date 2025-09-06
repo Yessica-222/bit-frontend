@@ -1,0 +1,407 @@
+/*============================== CONTENEDOR PRINCIPAL Y FONDO TECNOLÓGICO ============================== */
+.home-container {
+    font-family: 'Quicksand', 'Poppins', sans-serif;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow-x: hidden;
+    /* Fondo degradado sobrio masculino */
+    background: linear-gradient(135deg, #0a1f2b, #1f3a4b, #2b5062);
+}
+
+/* Capas animadas de líneas sutiles */
+.home-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: repeating-linear-gradient(45deg, rgba(0, 255, 255, 0.05) 0px, rgba(0, 255, 255, 0.05) 2px, transparent 2px, transparent 20px);
+    z-index: -1;
+    animation: moveLines 25s linear infinite;
+}
+
+/* Capa de triángulos muy sutiles */
+.home-container::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://www.transparenttextures.com/patterns/triangles.png');
+    opacity: 0.03;
+    z-index: -1;
+}
+
+@keyframes moveLines {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 1000px 1000px;
+    }
+}
+
+/* ============================== HEADER ============================== */
+.header {
+    background: linear-gradient(90deg, #1f3a4b, #2b5062, #1f3a4b);
+    color: #fff;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.header .logo {
+    height: 60px;
+}
+
+.header h1 {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #1fa2ff;
+}
+
+/* ============================== SECCIONES ============================== */
+.section {
+    padding: 2rem 1rem;
+}
+
+.section-title {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    background: linear-gradient(90deg, #1fa2ff, #00ffff, #1fa2ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 5px #00ffff, 0 0 10px #1fa2ff;
+    animation: gradientText 6s ease infinite;
+    margin-bottom: 1.5rem;
+}
+
+@keyframes gradientText {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ============================== CARD CONTAINER ============================== */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    justify-items: center;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 1rem;
+    width: 180px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    backdrop-filter: blur(10px);
+}
+
+.card:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 20px rgba(0, 255, 255, 0.3);
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* ============================== VIDEOS PRINCIPALES ============================== */
+.video-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.videos .video-main,
+.location .mapa-video {
+    width: 100%;
+    max-width: 480px;
+    height: 270px;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 255, 255, 0.3);
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.videos .video-main:hover,
+.location .mapa-video:hover {
+    transform: scale(1.02);
+}
+
+/* ============================== PROCESO DE COMPRA ============================== */
+.steps-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.step {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 2rem 1.5rem;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-top: 5px solid #00ffff;
+    backdrop-filter: blur(10px);
+}
+
+.step:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 255, 255, 0.3);
+}
+
+.step-icon {
+    font-size: 2.5rem;
+    color: #00ffff;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 5px #00ffff, 0 0 10px #1fa2ff;
+}
+
+.step-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #00ffff;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 5px #00ffff, 0 0 10px #1fa2ff;
+}
+
+.step-text p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+    color: #fff;
+    text-shadow: 0 0 3px #1fa2ff;
+}
+
+/* ============================== MEDIOS DE PAGO ============================== */
+.pagos .icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.pagos img {
+    width: 80px;
+    height: auto;
+    transition: transform 0.3s;
+}
+
+.pagos img:hover {
+    transform: scale(1.2);
+}
+
+/* ============================== FOOTER / REDES SOCIALES ============================== */
+.footer {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 2rem 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.footer h2 {
+    margin-bottom: 1rem;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 1rem;
+}
+
+.social-icons a {
+    font-size: 2rem;
+    color: #fff;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.social-icons a:hover {
+    transform: scale(1.3);
+}
+
+.social-icons a.facebook:hover {
+    color: #3b5998;
+}
+
+.social-icons a.instagram:hover {
+    color: #e1306c;
+}
+
+.social-icons a.whatsapp:hover {
+    color: #25d366;
+}
+
+/* ==============================
+   RESPONSIVE DESIGN
+============================== */
+
+/* Tablets (<=1024px) */
+@media (max-width: 1024px) {
+  .header {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .header .logo {
+    height: 50px;
+  }
+
+  .header h1 {
+    font-size: 1.6rem;
+  }
+
+  .card-container {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+
+  .step {
+    width: 200px;
+    padding: 1.5rem 1rem;
+  }
+}
+
+/* Celulares (<=768px) */
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+  }
+
+  .header h1 {
+    font-size: 1.4rem;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .card-container {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+
+  .card {
+    width: 100%;
+    max-width: 220px;
+  }
+
+  .card img {
+    height: 140px;
+  }
+
+  .video-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .videos .video-main,
+  .location .mapa-video {
+    max-width: 100%;
+    height: 220px;
+  }
+
+  .steps-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .step {
+    width: 90%;
+    max-width: 280px;
+  }
+
+  .pagos img {
+    width: 60px;
+  }
+}
+
+/* Móviles pequeños (<=480px) */
+@media (max-width: 480px) {
+  .header .logo {
+    height: 40px;
+  }
+
+  .header h1 {
+    font-size: 1.2rem;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+  }
+
+  .card-container {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    max-width: 90%;
+  }
+
+  .card img {
+    height: 120px;
+  }
+
+  .videos .video-main,
+  .location .mapa-video {
+    height: 180px;
+  }
+
+  .step {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .step-icon {
+    font-size: 2rem;
+  }
+
+  .step-number {
+    font-size: 1.5rem;
+  }
+
+  .pagos img {
+    width: 50px;
+  }
+
+  .social-icons {
+    gap: 15px;
+  }
+
+  .social-icons a {
+    font-size: 1.5rem;
+  }
+}

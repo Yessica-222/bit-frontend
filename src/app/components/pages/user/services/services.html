@@ -1,0 +1,45 @@
+<div class="services-container">
+  <h2>Servicios Disponibles</h2>
+
+  <!-- Mensaje de error -->
+  <div *ngIf="error" class="message error">{{ error }}</div>
+
+  <!-- Skeleton de carga -->
+  <div *ngIf="loading" class="services-grid">
+    <div class="service-card skeleton" *ngFor="let _ of [1,2,3,4,5,6]">
+      <div class="skeleton-title"></div>
+      <div class="skeleton-line"></div>
+      <div class="skeleton-line short"></div>
+      <div class="skeleton-footer"></div>
+    </div>
+  </div>
+
+  <!-- Grid de servicios -->
+  <div *ngIf="!loading && !error" class="services-grid">
+    <div class="service-card" *ngFor="let s of services">
+      <div class="service-header">
+        <div class="service-icon">🛠️</div>
+        <h3>{{ s.name }}</h3>
+      </div>
+
+      <p class="description">{{ s.description || 'Sin descripción' }}</p>
+
+      <div class="meta">
+        <div class="meta-item">
+          <span class="meta-label">Precio</span>
+          <span class="meta-value price">{{ formatPrice(s.price) }}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Duración</span>
+          <span class="meta-value duration">{{ formatDuration(s.duration) }}</span>
+        </div>
+      </div>
+
+      <button class="btn primary" (click)="goToAppointment(s)">
+        🗓 Agendar Cita
+      </button>
+    </div>
+  </div>
+
+  <button class="back-btn" (click)="goBack()">⬅ Volver al Dashboard</button>
+</div>
