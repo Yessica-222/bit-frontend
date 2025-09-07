@@ -29,12 +29,10 @@ export class Payment {
   creating = false;
 
   paymentMethods = [
-    { name: 'cash',        label: 'Efectivo',      logo: 'assets/efectivo.png' },
-    { name: 'transfer',    label: 'Transferencia', logo: 'assets/transfer.png' },
-    { name: 'card',        label: 'Tarjeta',       logo: 'assets/card.png' },
-    { name: 'nequi',       label: 'Nequi',         logo: 'assets/nequi.png' },
-    { name: 'efecty',      label: 'Efecty',        logo: 'assets/efecty.png' },
-    { name: 'bancolombia', label: 'Bancolombia',   logo: 'assets/bancolombia.png' },
+    { name: 'Efecty',        label: '5462785',      logo: 'pagos/efecty.png' },
+    { name: 'Nequi',       label: '3138805695',         logo: 'pagos/nequi.png' },
+    { name: 'Daviplata',      label: '3138805695',        logo: 'pagos/daviplata.png' },
+    { name: 'Bancolombia', label: '9175638996',   logo: 'pagos/bancolombia.jpg' },
   ];
 
   constructor() {
