@@ -44,7 +44,7 @@ src/app/
 
 1. Clonar el repositorio:
 
-   - git clone https://github.com/tuusuario/bit-frontend.git
+   - git clone https://github.com/Yessica-222/bit-frontend
     - cd bit-frontend
 
 
