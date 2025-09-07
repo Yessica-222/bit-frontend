@@ -1,59 +1,108 @@
-# BitFrontend
+# 🌐 BIT-Frontend - Electro Tecnológicas Cauca
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.2.
+Este repositorio contiene el **frontend del sistema e-commerce Electro Tecnológicas Cauca**, desarrollado en **Angular**.  
+Incluye las interfaces gráficas para usuarios y administradores, conectadas al backend vía API REST.
 
-## Development server
+---
 
-To start a local development server, run:
+## Tecnologías principales
 
-```bash
-ng serve
-```
+- **Angular 17+**
+- **TypeScript**
+- **HTML5 · CSS3**
+- **Bootstrap / Angular Material**
+- **RxJS · HttpClient**
+- **JWT para autenticación**
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Estructura de carpetas
 
 ```bash
-ng generate --help
+src/app/
+├── components/
+│   ├── pages/
+│   │   ├── admin/         # Panel de administración
+│   │   ├── home/          # Página principal
+│   │   ├── payment/       # Módulo de pagos
+│   │   ├── products/      # Gestión de productos
+│   │   ├── services/      # Servicios disponibles
+│   │   ├── sign-in/       # Login
+│   │   ├── sign-up/       # Registro
+│   │   └── user/          # Sección de usuario (carrito, citas, facturas, perfil)
+│   └── shared/            # Navbar, componentes comunes
+├── guards/                # Guards de rutas protegidas
+├── models/                # Modelos de datos
+├── services/              # Servicios Angular para consumir API
+├── app.config.ts
+├── app.routes.ts
+├── app.html
+└── app.css
 ```
+---
+### **Instalación y configuración**
 
-## Building
+1. Clonar el repositorio:
 
-To build the project run:
+   - git clone https://github.com/tuusuario/bit-frontend.git
+    - cd bit-frontend
 
-```bash
-ng build
-```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+2. Instalar dependencias:
 
-## Running unit tests
+   - npm install
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
 
-```bash
-ng test
-```
+### **Iniciar el servidor de desarrollo:**
 
-## Running end-to-end tests
+ - ng serve 
 
-For end-to-end (e2e) testing, run:
+### Requisitos previos
 
-```bash
-ng e2e
-```
+- Node.js >= 16
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+- Angular CLI >= 17
 
-## Additional Resources
+- npm o yarn instalado
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Backend corriendo en http://localhost:5000/api
+
+### **Funcionalidades principales**
+ Usuario
+
+- Registro e inicio de sesión
+
+- Navegación dinámica según autenticación
+
+- Gestión de perfil
+
+- Carrito de compras con cálculo de total
+
+- Citas técnicas (agendar, ver, cancelar)
+
+- Facturas y pagos
+
+ Administrador
+
+- Panel de administración
+
+- CRUD de productos
+
+- Gestión de servicios
+
+- Facturas y pagos
+
+- Gestión de usuarios
+
+
+### Autor
+
+## 👩‍💻 Autor
+
+Desarrollado por **Yessica Alexandra Conejo Muñoz**  
+
+📍 Popayán, Colombia  
+📧 Contacto: munozyessica769@gmail.com  
+🔗 [LinkedIn](https://www.linkedin.com/in/yessica-alexandra-conejo-munoz-desarrolladorweb)  
+
+---
