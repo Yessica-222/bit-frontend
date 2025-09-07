@@ -1,4 +1,4 @@
-# 🌐 BIT-Frontend - Electro Tecnológicas Cauca
+# BIT-Frontend - Electro Tecnológicas Cauca
 
 Este repositorio contiene el **frontend del sistema e-commerce Electro Tecnológicas Cauca**, desarrollado en **Angular**.  
 Incluye las interfaces gráficas para usuarios y administradores, conectadas al backend vía API REST.
@@ -97,7 +97,7 @@ src/app/
 
 ### Autor
 
-## 👩‍💻 Autor
+##  Autor
 
 Desarrollado por **Yessica Alexandra Conejo Muñoz**  
 
