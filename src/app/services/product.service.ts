@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private baseUrl = 'http://localhost:5000/api/products'; // endpoint de tu backend
+  private baseUrl = `${environment.apiUrl}/api/products`; // endpoint de tu backend
 
   constructor(private http: HttpClient) {}
 

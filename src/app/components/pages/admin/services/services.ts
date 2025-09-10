@@ -1,7 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ServiceService, Service } from '../../../../services/services.service';
+import { ServiceService } from '../../../../services/services.service';
+import { Service } from '../../../../models/service.model';
 import { ToastrService } from 'ngx-toastr';
 import { Router, RouterLink } from '@angular/router';
 
@@ -96,14 +97,14 @@ export class ServicesComponent {
   }
 
   editService(service: Service) {
-    this.serviceForm.setValue({
-      name: service.name,
-      description: service.description,
-      price: service.price,
-      duration: service.duration,
-    });
-    this.selectedServiceId = service._id!;
-  }
+  this.serviceForm.setValue({
+    name: service.name,
+    description: service.description,
+    price: service.price,
+    duration: service.duration,
+  });
+  this.selectedServiceId = service._id ?? null; // ✅ corregido
+}
 
   deleteService(id: string) {
     this.selectedServiceId = id;

@@ -9,7 +9,7 @@ export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: R
 
   const token = localStorage.getItem('token');
   if (!token) {
-    // 🔹 Guardar la ruta donde estaba el usuario
+    //  Guardar la ruta donde estaba el usuario
     localStorage.setItem('redirectUrl', state.url);
     router.navigate(['/sign-in']);
     return false;
@@ -26,4 +26,4 @@ export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: R
   }
 
   return true;
-};
+}

@@ -1,8 +1,8 @@
-// src/app/components/pages/services/services.ts
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ServiceService } from '../../../services/services.service';
 import { Router } from '@angular/router';
+import { Service } from '../../../models/service.model';
 
 @Component({
   selector: 'app-services',
@@ -11,49 +11,36 @@ import { Router } from '@angular/router';
   templateUrl: './services.html',
   styleUrls: ['./services.css']
 })
-export class Services {   // ✅ nombre corregido
-  services: any[] = [];
-  showLoginModal: boolean = false;
-  selectedService: any = null; // 👈 guarda el servicio elegido
+export class Services {
+  services: Service[] = [];
+  showLoginModal = false;
+  selectedService: Service | null = null;
 
   constructor(private serviceService: ServiceService, private router: Router) {
     this.loadServices();
   }
 
-  loadServices() {
+  loadServices(): void {
     this.serviceService.getServices().subscribe({
-      next: (data: any) => {
-        console.log("📌 Servicios recibidos desde backend:", data);
-
-        // ✅ Ajusta si viene como array o dentro de un objeto
-        if (Array.isArray(data)) {
-          this.services = data;
-        } else if (data && data.data) {
-          this.services = data.data;
-        } else {
-          this.services = [];
-          console.warn("⚠️ No se encontraron servicios en la respuesta");
-        }
+      next: (data: Service[]) => {
+        this.services = Array.isArray(data) ? data : [];
       },
-      error: (err) => console.error('❌ Error cargando servicios', err)
+      error: (err: any) => console.error('❌ Error cargando servicios', err)
     });
   }
 
-  // cuando hace clic en "Agendar cita"
-  openLoginModal(service: any) {
-    this.selectedService = service; 
-    localStorage.setItem('selectedService', JSON.stringify(service)); // persistimos
+  openLoginModal(service: Service): void {
+    this.selectedService = service;
+    localStorage.setItem('selectedService', JSON.stringify(service));
     this.showLoginModal = true;
   }
 
-  closeLoginModal() {
+  closeLoginModal(): void {
     this.showLoginModal = false;
   }
 
-  redirectToLogin() {
+  redirectToLogin(): void {
     this.showLoginModal = false;
-    this.router.navigate(['/sign-in'], {
-      queryParams: { redirect: 'user/appointments' }
-    });
+    this.router.navigate(['/sign-in'], { queryParams: { redirect: 'user/appointments' } });
   }
 }

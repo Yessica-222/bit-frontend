@@ -18,24 +18,24 @@ export class SigninService {
   }
 
   getUser() {
-    const token = localStorage.getItem('token');
-    if (!token) return null;
+  const token = localStorage.getItem('token');
+  if (!token) return null;
 
-    try {
-      const payloadBase64 = token.split('.')[1];
-      const json = atob(payloadBase64.replace(/-/g, '+').replace(/_/g, '/'));
-      const decoded = JSON.parse(json);
+  try {
+    const payloadBase64 = token.split('.')[1];
+    const json = atob(payloadBase64.replace(/-/g, '+').replace(/_/g, '/'));
+    const decoded = JSON.parse(json);
 
-      if (decoded.user && typeof decoded.user === 'object') return decoded.user;
-      if (decoded.role || decoded.email || decoded.name) return decoded;
-      if (decoded.sub) return { _id: decoded.sub, ...decoded };
+    if (decoded.user && typeof decoded.user === 'object') return decoded.user;
+    if (decoded.role || decoded.email || decoded.name) return decoded;
+    if (decoded.sub) return { _id: decoded.sub, ...decoded };
 
-      return decoded;
-    } catch (err) {
-      console.error('Error decodificando token:', err);
-      return null;
-    }
+    return decoded;
+  } catch (err) {
+    console.error('Error decodificando token:', err);
+    return null;
   }
+}
 
   logout() {
     localStorage.removeItem('token');

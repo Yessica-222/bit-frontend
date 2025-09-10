@@ -7,8 +7,7 @@ import { CartService } from '../../../services/cart.service';
 
 @Component({
   selector: 'app-navbar',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports : [RouterModule, CommonModule],
   templateUrl: './navbar.html',
   styleUrls: ['./navbar.css']
 })

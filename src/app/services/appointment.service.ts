@@ -4,60 +4,61 @@ import { Observable } from 'rxjs';
 import { Appointment } from '../models/appointment.model';
 import { User } from '../models/users.model';
 import { Service } from '../models/service.model';
+import { environment } from '../../environments/environment'; // ✅ Importa environment
 
 @Injectable({ providedIn: 'root' })
 export class AppointmentService {
-  private apiUrl = 'http://localhost:5000/api/appointment';
+   private baseApiUrl : string = `${environment.apiUrl}/api/appointment`;
 
   constructor(private http: HttpClient) {}
 
   // Método para obtener los headers con token
   private getAuthHeaders(): HttpHeaders {
-    const token = localStorage.getItem('token'); // 👈 Aquí tienes guardado el JWT tras login
+    const token = localStorage.getItem('token'); // JWT tras login
     return new HttpHeaders({
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${token || ''}`
     });
   }
 
   getAppointments(): Observable<Appointment[]> {
-    return this.http.get<Appointment[]>(this.apiUrl, {
+    return this.http.get<Appointment[]>(this.baseApiUrl, {
       headers: this.getAuthHeaders()
     });
   }
 
   createAppointment(data: any): Observable<Appointment> {
-    return this.http.post<Appointment>(this.apiUrl, data, {
+    return this.http.post<Appointment>(this.baseApiUrl, data, {
       headers: this.getAuthHeaders()
     });
   }
 
   updateAppointment(id: string, data: any): Observable<Appointment> {
-    return this.http.put<Appointment>(`${this.apiUrl}/${id}`, data, {
+    return this.http.put<Appointment>(`${this.baseApiUrl}/${id}`, data, {
       headers: this.getAuthHeaders()
     });
   }
 
   deleteAppointment(id: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`, {
+    return this.http.delete(`${this.baseApiUrl}/${id}`, {
       headers: this.getAuthHeaders()
     });
   }
 
-  // Si quieres cargar usuarios y servicios desde la API:
+  // Usuarios y servicios
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>('http://localhost:5000/api/users', {
+    return this.http.get<User[]>(`${environment.apiUrl}/api/users`, {
       headers: this.getAuthHeaders()
     });
   }
 
   getServices(): Observable<Service[]> {
-    return this.http.get<Service[]>('http://localhost:5000/api/services', {
+    return this.http.get<Service[]>(`${environment.apiUrl}/api/services`, {
       headers: this.getAuthHeaders()
     });
   }
 
   getMyAppointments(): Observable<Appointment[]> {
-    return this.http.get<Appointment[]>(`${this.apiUrl}/my`, {
+    return this.http.get<Appointment[]>(`${this.baseApiUrl}/my`, {
       headers: this.getAuthHeaders()
     });
   }

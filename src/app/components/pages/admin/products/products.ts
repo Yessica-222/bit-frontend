@@ -1,12 +1,11 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { ProductService } from '../../../../services/product.service';
 
-interface products {
+interface Product {
   _id?: string;
   name: string;
   description: string;
@@ -19,7 +18,7 @@ interface products {
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule,],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './products.html',
   styleUrls: ['./products.css']
 })
@@ -29,7 +28,7 @@ export class ProductComponent {
   private toast = inject(ToastrService);
   private router = inject(Router);
 
-  products = signal<products[]>([]);
+  products = signal<Product[]>([]);
   selectedProductId: string | null = null;
   pendingAction: 'delete' | 'update' | null = null;
   showConfirmDialog = false;
@@ -44,34 +43,26 @@ export class ProductComponent {
   });
 
   constructor() {
-  this.loadProducts();
-}
+    this.loadProducts();
+  }
 
-loadProducts() {
-  this.productService.getProducts().subscribe({
-    next: (res: any) => {
-      this.products.set(res);
-      console.log('Productos cargados:', res); // 👈 para debug
-    },
-    error: () => this.toast.error('Error cargando productos'),
-  });
-}
-
-
-  // Crear factura
-  createProduct(data: any) {
-    this.productService.createProduct(data).subscribe({
-      next: () => {
-        this.loadProducts();
+  loadProducts() {
+    this.productService.getProducts().subscribe({
+      next: (res: Product[]) => {
+        this.products.set(res);
       },
-      error: (err) => {
-        console.error('Error creando factura:', err);
-      },
+      error: () => this.toast.error('Error cargando productos')
     });
   }
 
-  // Actualizar factura
-  updateProduct(data: any) {
+  createProduct(data: Product) {
+    this.productService.createProduct(data).subscribe({
+      next: () => this.loadProducts(),
+      error: (err) => this.toast.error('Error creando producto')
+    });
+  }
+
+  updateProduct(data: Product) {
     if (!this.selectedProductId) return;
 
     this.productService.updateProduct(this.selectedProductId, data).subscribe({
@@ -79,19 +70,15 @@ loadProducts() {
         this.loadProducts();
         this.selectedProductId = null;
       },
-      error: (err) => {
-        console.error('Error actualizando factura:', err);
-      },
+      error: (err) => this.toast.error('Error actualizando producto')
     });
   }
 
-  // Eliminar factura
   deleteProduct(id: string) {
     this.selectedProductId = id;
     this.pendingAction = 'delete';
     this.showConfirmDialog = true;
   }
-
 
   submitForm() {
     this.pendingAction = 'update';
@@ -142,7 +129,7 @@ loadProducts() {
     this.selectedProductId = null;
   }
 
-  editProduct(product: products) {
+  editProduct(product: Product) {
     this.productForm.setValue({
       name: product.name,
       description: product.description,
@@ -151,11 +138,19 @@ loadProducts() {
       category: product.category,
       image: product.image || ''
     });
-    this.selectedProductId = product._id!;
+    this.selectedProductId = product._id ?? null;
   }
 
   resetForm() {
-    this.productForm.reset();
+    // ✅ Reset con valores por defecto
+    this.productForm.reset({
+      name: '',
+      description: '',
+      price: 0,
+      stock: 0,
+      category: '',
+      image: ''
+    });
     this.selectedProductId = null;
   }
 
@@ -164,15 +159,13 @@ loadProducts() {
   }
 
   onFileSelected(event: Event) {
-  const file = (event.target as HTMLInputElement).files?.[0];
-  if (!file) return;
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (!file) return;
 
-  const reader = new FileReader();
-  reader.onload = () => {
-    // Guardamos la imagen en Base64 dentro del FormControl 'image'
-    this.productForm.patchValue({ image: reader.result as string });
-  };
-  reader.readAsDataURL(file);
-}
-
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.productForm.patchValue({ image: reader.result as string });
+    };
+    reader.readAsDataURL(file);
+  }
 }
